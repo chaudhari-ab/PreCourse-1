@@ -5,6 +5,9 @@
 //    isEmpty(): O(1)
 
 // Space Complexity : O(MAX)
+
+import java.io.IOException;
+
 class Stack { 
     //Please read sample.java file before starting.
   //Kindly include Time and Space complexity at top of each file
@@ -22,14 +25,10 @@ class Stack {
         top = -1;
     } 
   
-    boolean push(int x) 
+    boolean push(int x) throws Exception
     { 
-        if(top<0){
-            System.out.println("Empty Stack");
-            return false;
-        }else if(top>MAX){
-            System.out.println("Stack Overflow");
-            return false;
+        if(top>MAX){
+            throw new Exception("Stack Overflow");
         }
         else{
             a[++top] = x;
@@ -37,22 +36,20 @@ class Stack {
         }
     } 
   
-    int pop() 
+    int pop() throws Exception
     { 
         if(top<0){
-            System.out.println("Stack Underflow");
-            return 0;
+            throw new Exception("Stack Underflow");
         }else{
             return a[top--];
         }
     } 
   
-    int peek() 
+    int peek() throws Exception
     { 
         //Write your code here
         if(top<0){
-            System.out.println("Stack is empty");
-            return 0;
+            throw new Exception("Stack is empty");
         }else{
             return a[top];
         }
@@ -61,12 +58,16 @@ class Stack {
   
 // Driver code 
 class Main { 
-    public static void main(String args[]) 
+    public static void main(String args[]) throws Exception
     { 
+        try{
         Stack s = new Stack(); 
         s.push(10); 
         s.push(20); 
         s.push(30); 
-        System.out.println(s.pop() + " Popped from stack"); 
+        System.out.println(s.pop() + " Popped from stack");
+        }catch(Exception e){
+            throw e;
+        }
     } 
 }

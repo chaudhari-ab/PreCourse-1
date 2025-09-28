@@ -1,8 +1,6 @@
 // Time Complexity :
-//    push(): O(1)
-//    pop(): O(1)
-//    peek(): O(1)
-//    isEmpty(): O(1)
+//    insert(): O(n)
+//    printlist(): O(n)
 
 // Space Complexity : O(MAX)
 import java.io.*;
@@ -15,7 +13,7 @@ public class LinkedList {
   
     // Linked list Node. 
     // This inner class is made static 
-    // so that main() can access it 
+    // so that main() can access it
     static class Node { 
   
         int data; 
@@ -73,9 +71,39 @@ public class LinkedList {
         } 
         System.out.println();
     }
+
+    public static LinkedList delete(LinkedList list, int key) throws Exception {
+    Node currNode = list.head, prev = null;
+
+    // CASE 1: If head node has the key (data)
+    if (currNode != null && currNode.data == key) {
+        list.head = currNode.next; // Changed head
+        System.out.println(key + " found and deleted");
+        return list;
+    }
+
+    // CASE 2: Search for the key to be deleted
+    while (currNode != null && currNode.data != key) {
+        prev = currNode;
+        currNode = currNode.next;
+    }
+
+    // If key was present, unlink it
+    if (currNode != null) {
+        prev.next = currNode.next;
+        System.out.println(key + " found and deleted");
+    }
+
+    // CASE 3: The key was not present
+    if (currNode == null) {
+        throw new Exception(key + " not found");
+    }
+
+    return list;
+}
    
     // Driver code 
-    public static void main(String[] args) 
+    public static void main(String[] args) throws Exception
     { 
         /* Start with the empty list. */
         LinkedList list = new LinkedList(); 
@@ -83,7 +111,7 @@ public class LinkedList {
         // 
         // ******INSERTION****** 
         // 
-  
+        try{
         // Insert the values 
         list = insert(list, 1); 
         list = insert(list, 2); 
@@ -92,6 +120,9 @@ public class LinkedList {
         list = insert(list, 5); 
   
         // Print the LinkedList 
-        printList(list); 
+        printList(list);
+        }catch(Exception e){
+            throw new Exception(e);
+        }
     } 
 }
