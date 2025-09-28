@@ -1,8 +1,9 @@
 // Time Complexity :
 //    insert(): O(n)
 //    printlist(): O(n)
+//    delete(): O(n)
 
-// Space Complexity : O(MAX)
+// Space Complexity : O(n)
 import java.io.*;
   
 // Java program to implement 
